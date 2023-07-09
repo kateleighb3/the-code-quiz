@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>The Coding Quiz</title>
+  </head>
+  <body>
+    <header>
+        <button class="high_scores_btn">View High Scores</button>
+        <div class = "time">Time:<span id="count_down"> 59</span>
+        </div>
+    </header>
+
+    <!-- start box -->
+
+    <div class="card" id="start_box">
+        <div class="start-title">Coding Quiz</div>
+        <div class="start-body">Do your best, bruh!</div>
+        <button class = start_button> Start Quiz </button>
+    </div>
+
+    <!-- quiz box -->
+
+    <div class="card" id="quiz_box">
+        <div class="quiz_question"></div>
+        <div class="quiz_options"></div>
+    </div>
+
+    <!-- finished box -->
+
+    <div class="card" id="finished_box">
+        <div class="finished_title">You Finished!</div>
+        <div class="finished_body">
+            <ul class="finished_list">
+                <h3>Your Score:<span class="score_spot"></span> </h3>
+                <input type="text" id="initials" name="initials" placeholder="Enter initials here...">
+                <input type="submit" id="submit" value="Submit">
+            </ul>
+        </div>
+    </div>
+
+    <!-- high score box -->
+    <div class="card" id="high_score_box">
+        <div class="high_score_title"></div>
+        <div class="high_score_list"></div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+  </body>
