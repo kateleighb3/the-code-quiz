@@ -91,3 +91,11 @@ ul.choices {
     margin-bottom: 10px;
     cursor: pointer;
   }
+
+  .quiz_question {
+    color: blue;
+  }
+
+  .next_button{
+    background-color: aquamarine;
+  }

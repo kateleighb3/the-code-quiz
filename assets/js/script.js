@@ -29,9 +29,10 @@ const highScoresBox=document.querySelector("#high_scores_box");
 const submitBtn=document.querySelector("#submit");
 const viewHighScoreBtn=document.querySelector(".high_scores_btn");
 const time=document.querySelector("#count_down");
+const cardBox = document.querySelector(".card");
+const nextButton = document.querySelector(".next_button");
 
-
-
+// Global Variables
 
 // questions and answers array/creating an array and passing the questions, options, and answers
 
@@ -71,7 +72,7 @@ const quizOptions = [
 
 function startTimer(){
     // sets interval in variable
-    var secondsLeft = 10;
+    var secondsLeft = 59;
     var timerInterval=setInterval(function(){
         secondsLeft--;
         time.textContent=secondsLeft;
@@ -88,59 +89,46 @@ function startTimer(){
     console.log(startTimer);
 };
 
-function generateQuestions(){
-    const questions=JSON.parse(JSON.stringify(quizQuestions));
-    const answers=JSON.parse(JSON.stringify(quizOptions));
+function getQuestionAndOptions(index){
 
-    console.log(questions); 
-    console.log(answers);
-    if (questions.length === 0) {
-        return finishQuiz();
-    }
-   
-    const questionEl = document.createElement("h2");
-    questionEl.textContent = questions;
 
-    const optionsEl = document.createElement('ul');
-    optionsEl.classList.add("choices");
+}
 
-    // Iterate over the answer options and create list items
-    for (let i = 0; i < answers.length; i++) {
-        const answer = answers[i][0];
-        const isCorrect = answers[i][1];
+function startGame(){
+    startTimer();
+    startBox.style.display="none";
+    quizBox.style.display="block";
 
-    const listItem = document.createElement("li");
-    listItem.textContent = answer;
 
-    // Add a click event listener to each option to handle the user's choice
-    listItem.addEventListener('click', function () {
-        if (isCorrect) {
-          // Handle correct answer
-        } else {
-          // Handle wrong answer
+    for (let i = 0; i < quizQuestions.length; i++) {
+        let question = quizQuestions[i];
+        let options = quizOptions[i]; //length of quiz questions and quiz options are the same so ok to use i for both
+        console.log("a question...", question);
+        console.log("options...", options);
+        
+        for (let j = 0; j < options.length; j++) {
+            let lineOpt = options[j];
+            let stringOpt = lineOpt[0];
+            console.log("option string...", stringOpt);
         }
-  
-        // Move to the next question
-        generateQuestions(index + 1);
-      });
-  
-      optionsEl.appendChild(listItem);
     }
 
-    // Append the question and options to the quiz container
-    const quizTitle = document.querySelector(".quiz_question");
-    const quizBody = document.querySelector(".quiz_options");
+    
+    
 
-    quizTitle.appendChild(questionEl);
-    quizBody.appendChild(optionsEl);
+    
+        
     
 }
 
+
 // when start button clicked...
-startQuizBtn.addEventListener("click", function(){
+startQuizBtn.addEventListener("click", startGame);
+/*nextButton.addEventListener("click", function(){}*/
+
+/*
     startBox.style.display="none";
     quizBox.style.display="block";
     generateQuestions();
     startTimer();
-});
-
+})*/
