@@ -99,3 +99,7 @@ ul.choices {
   .next_button{
     background-color: aquamarine;
   }
+
+  .quiz_options {
+    align-items: center;
+  }

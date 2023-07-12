@@ -36,7 +36,51 @@ const nextButton = document.querySelector(".next_button");
 
 // questions and answers array/creating an array and passing the questions, options, and answers
 
-const quizQuestions= [
+
+let quizQuestions = [
+    {
+        question: "What does HTML stand for?",
+        answer: "Hyper Text Markup Language",
+        options:[
+                "Hyper Text Preprocessor", 
+                "Hyper Text Markup Language",
+                "Hyper Text Multiple Language",
+                "Hyper Tool Multi Language",
+                ]           
+    },
+    {
+        question: "What does CSS stand for?",
+        answer: "Cascasding Style Sheet",
+        options: [
+                "Common Style Sheet", 
+                "Colorful Style Sheet",
+                "Computer Style Sheet",
+                "Cascasding Style Sheet",
+                ]
+    },
+    { question: "What does PHP stand for?",
+        answer: "Hypertext Preprocessor",
+      options: [ 
+                "Hypertext Preprocessor",
+                "Hypertext Programming",
+                "Hypertext Preprogramming",
+                "Hometext Preprocessor",
+               ]
+    },
+    {
+        question: "What does SQL stand for?",
+        answer: "Structured Query Language",
+        options:[
+        "Stylish Question Language",
+        "Stylesheet Query Language",
+        "Statement Question Language",
+        "Structured Query Language",
+        ]
+    }
+];
+
+
+/* const quizQuestions= [
     "What does HTML stand for?",
     "What does CSS stand for?",
     "What does PHP stand for?",
@@ -69,6 +113,8 @@ const quizOptions = [
         ["Structured Query Language", true],
     ],
 ];
+*/
+
 
 function startTimer(){
     // sets interval in variable
@@ -90,16 +136,65 @@ function startTimer(){
 };
 
 function getQuestionAndOptions(index){
+    const questTitle = document.querySelector(".quiz_question");
+    const optionsList = document.querySelector(".quiz_options");
 
+    // when click start button-- first question with options appears (div class for each quizQuestion makes each question able to be a list and ',' appear but + sign does not)
+    // let queTag = quizQuestions[index].question;
 
+    document.querySelector(".quiz_question").innerHTML = quizQuestions[index].question;
+    let optionTag = ['<div class="option"><span>'+ quizQuestions[index].options[0] +'</span></div>'
+    + '<div class="option"><span>'+ quizQuestions[index].options[1] +'</span></div>'
+    + '<div class="option"><span>'+ quizQuestions[index].options[2] +'</span></div>'
+    + '<div class="option"><span>'+ quizQuestions[index].options[3] +'</span></div>'
+    
+];
+
+    /*[quizQuestions[index].options[0],
+                    quizQuestions[index].options[1],
+                    quizQuestions[index].options[2],
+                    quizQuestions[index].options[3]
+];
+*/
+    // questTitle.innerHTML=queTag;
+    optionsList.innerHTML = optionTag;
+
+    const option = optionsList.querySelectorAll(".option");
+
+    for (i=0; i < option.length; i++){
+        let opt = option[i];
+        opt.setAttribute('onclick', "optionSelected()");
+    }
+}
+
+function optionSelected(){
+    let playerOption = answer.innerText;
+    let correctOption = quizQuestions[quizQuestCount].answer;
+    if(playerOption == correctOption){
+
+    }
 }
 
 function startGame(){
-    startTimer();
-    startBox.style.display="none";
-    quizBox.style.display="block";
+    startTimer(); // start the timer
+    startBox.style.display="none"; // hide start box
+    quizBox.style.display="block"; // show quiz box
+    getQuestionAndOptions(0); //calling getQuestionAndOptions function
+
+    /*for (let i=0; i < quizQuestions.length; i++) {
+        let questionAndOptions = quizQuestions[i];
+        console.log(questionAndOptions);
+    }
+
+    let questions = quizQuestions[0];
+    console.log ("question..", questions)
+    console.log("try this...", quizQuestions.question);
+    // dipslay first question with options after start quiz button clicked.
+*/
 
 
+
+/*
     for (let i = 0; i < quizQuestions.length; i++) {
         let question = quizQuestions[i];
         let options = quizOptions[i]; //length of quiz questions and quiz options are the same so ok to use i for both
@@ -114,12 +209,21 @@ function startGame(){
     }
 
     
-    
-
-    
+    */
         
     
 }
+
+
+let quizQuestCount = 0;
+
+nextButton.onclick = function nextQuestion() { 
+    if (quizQuestCount < quizQuestions.length-1) { //if question count is less than total question length
+        quizQuestCount++; //increment the quizQuestCount value
+        getQuestionAndOptions(quizQuestCount); //calling getQuestionAndOption function and passing parameters
+    }
+};
+
 
 
 // when start button clicked...
